@@ -10,12 +10,24 @@
 angular.module('angularApp')
   .controller('MainCtrl', function ($scope, $http) {
 
-    $scope.notSortBy = ['firstname'];
-    $scope.useCols = ['firstname', 'lastname', 'title', 'state', 'admincomment'];
+    $scope.baseURL = 'http://localhost:8000/users/list/?';
+    $scope.useCols = ['userID', 'firstname', 'lastname', 'title', 'state', 'admincomment'];
+    $scope.itemsPerPage = 100;
+    $scope.listItemsPerPage = [50, 100];
+
+    $scope.init = {
+      'count': $scope.itemsPerPage,
+      'sortBy': 'firstname',
+      'sortOrder': 'asc',
+      'filterBase': 1, // set false to disable
+    };
+
+    $scope.filterBy = {
+    };    
 
     $scope.getResource = function (params, paramsObj) {
       
-      var urlApi = 'http://localhost:8000/users/list/?' + params;
+      var urlApi = $scope.baseURL + params;
       return $http.get(urlApi).then(function (response) {
         var rows = [];
         var header = [];
@@ -40,6 +52,7 @@ angular.module('angularApp')
         return {
           'rows': rows,
           'header': header,
+          'pagination': response.data.pagination,
           'sortBy': response.data['sort-by'],
           'sortOrder': response.data['sort-order']
         }
