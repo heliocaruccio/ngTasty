@@ -14,7 +14,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTasty'
+    'ngTasty',
+    'pageslide-directive'
   ])
   .config(function ($routeProvider) {
     $routeProvider

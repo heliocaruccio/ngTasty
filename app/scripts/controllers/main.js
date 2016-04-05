@@ -14,6 +14,7 @@ angular.module('angularApp')
     $scope.useCols = ['userID', 'firstname', 'lastname', 'title', 'state', 'admincomment'];
     $scope.itemsPerPage = 100;
     $scope.listItemsPerPage = [50, 100];
+    $scope.openSearchPane = false;
 
     $scope.init = {
       'count': $scope.itemsPerPage,
@@ -22,8 +23,19 @@ angular.module('angularApp')
       'filterBase': 1, // set false to disable
     };
 
-    $scope.filterBy = {
-    };    
+    $scope.filterBy = {};
+
+    
+    $scope.toggleSearchPane = function(){
+        $scope.openSearchPane = !$scope.openSearchPane;
+    }
+
+    $scope.searchOnNames = function(){
+      $scope.filterBy = {
+        'name': $scope.search_names,
+        'filtrar': 1
+      };
+    };
 
     $scope.getResource = function (params, paramsObj) {
       
