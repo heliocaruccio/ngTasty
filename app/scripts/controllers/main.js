@@ -10,7 +10,7 @@
 angular.module('angularApp')
   .controller('MainCtrl', function ($scope, $http) {
 
-    $scope.baseURL = 'http://localhost:8000/users/list/?';
+    $scope.baseURL = 'http://python-code4fun.rhcloud.com/users/list/?';
     $scope.useCols = ['userID', 'firstname', 'lastname', 'title', 'state', 'admincomment'];
     $scope.itemsPerPage = 100;
     $scope.listItemsPerPage = [50, 100];
